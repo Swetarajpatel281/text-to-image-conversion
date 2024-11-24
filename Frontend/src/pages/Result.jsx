@@ -1,17 +1,33 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { assets } from "../assets/assets"
-
+import { motion } from "framer-motion"
+import { AppContext } from "../context/AppContext.jsx"
 
 const Result = () => {
   const [image, setImage] = useState(assets.sample_img_1)
   const [isImageLoaded, seetIsImageLoaded] =useState(false)
   const [loading, setLoading] = useState(false)
   const [input, setInput] = useState('')
+  const {generateImage} = useContext(AppContext)
   const onSubmitHandelar = async (e) =>{
-
+   e.preventDefault()
+   setLoading(true)
+   if(input){
+    const image = await generateImage(input)
+    if(image){
+      seetIsImageLoaded(true)
+      setImage(image)
+    }
+   }
+   setLoading(false)
   }
   return (
-    <form onSubmit={onSubmitHandelar} className="flex flex-col min-h-[90vh] justify-center items-center">
+    <motion.form 
+    initial={{opacity:1, y:100}}
+    transition={{duration:1}}
+    whileInView={{opacity:1, y: 0}}
+    viewport={{once:true}}
+    onSubmit={onSubmitHandelar} className="flex flex-col min-h-[90vh] justify-center items-center">
     <div>
      <div className="relative">
       <img src={assets.sample_img_1} alt="" className="max-w-sm rounded" />
@@ -36,7 +52,7 @@ const Result = () => {
 
      </div>
 }
-    </form>
+    </motion.form>
 
   )
 }
