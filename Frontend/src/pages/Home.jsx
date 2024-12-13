@@ -1,4 +1,5 @@
 import Description from "../components/Description"
+import Developer from "../components/Developer"
 import GenerateBtn from "../components/GenerateBtn"
 import Header from "../components/Header"
 import Steps from "../components/Steps"
@@ -13,6 +14,7 @@ const Home = () => {
     <Description />
     <Testimonials />
     <GenerateBtn />
+    <Developer />
     </div>
   )
 }

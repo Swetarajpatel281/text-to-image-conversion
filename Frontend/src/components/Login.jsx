@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { toast } from 'react-toastify'
 const Login = () => {
   const [state, setState] = useState('Login')
-  const {setShowLogin, backendUrl,setToken, setUser} = useContext(AppContext)
+  const {setShowLogin,setToken, setUser} = useContext(AppContext)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -78,7 +78,7 @@ const Login = () => {
         <p className='text-sm text-blue-600 my-4'>Forgot password?</p>
         <button className='bg-blue-600 w-full text-white py-2 rounded-full'>{state === 'Login' ? 'login': 'create account'}</button>
 
-       {state ==='Login'? <p>Don't have an account? <span className='text-blue-600 cursor-pointer' onClick={()=>setState('sign up')}>Sign up</span>
+       {state ==='Login'? <p> Don't have an account? <span className='text-blue-600 cursor-pointer' onClick={()=>setState('sign up')}>Sign up</span>
         </p>
         :
         <p>Already have an account? <span className='text-blue-600 cursor-pointer' onClick={()=>setState('Login')}>Login</span>
